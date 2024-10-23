@@ -2,20 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Variáveis globais de cores */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --background: hsl(206, 94%, 87%); /* Cor de fundo clara */
+  --foreground: hsl(213, 96%, 18%); /* Marine blue */
 }
 
 body {
   color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--background);
+  font-family: "Ubuntu", sans-serif;
 }
