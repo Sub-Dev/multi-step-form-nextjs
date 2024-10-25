@@ -1,6 +1,6 @@
 "use client";
 import React from 'react';
-
+import NextButton from './NextButton';
 interface PersonalInfoFormProps {
   formData: {
     name: string;
@@ -19,7 +19,7 @@ const PersonalInfoForm: React.FC<PersonalInfoFormProps> = ({
   currentStep,
 }) => {
   return (
-    <div className="p-10 bg-white rounded-r-lg relative flex flex-col justify-between h-[500px] w-[700px]"> {/* Altura fixa ajustada */}
+    <div className="p-10 bg-white rounded-r-lg relative flex flex-col justify-between h-[100%] w-[100%]"> {/* Altura fixa ajustada */}
       <h2 className="text-3xl font-bold mb-1 text-black">Personal Info</h2>
       <p className="text-gray-400 mb-6">
         Please provide your name, email address, and phone number.
@@ -58,9 +58,7 @@ const PersonalInfoForm: React.FC<PersonalInfoFormProps> = ({
         />
       </div>
       <div className="flex justify-end">
-        <button onClick={() => setCurrentStep(currentStep + 1)} className="bg-[#03295a] text-white py-2 px-6 rounded-lg hover:bg-light-blue transition text-base font-semibold">
-          Next Step
-        </button>
+        <NextButton onClick={() => setCurrentStep(currentStep + 1)} />
       </div>
     </div>
   );
