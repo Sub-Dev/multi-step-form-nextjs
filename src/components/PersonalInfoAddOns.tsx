@@ -16,11 +16,11 @@ const addOns: AddOn[] = [
 ];
 
 interface AddOnsFormProps {
-  selectedAddOns: string[];
-  setSelectedAddOns: (addOns: string[]) => void;
-  currentStep: number; // Recebe o passo atual
-  setCurrentStep: React.Dispatch<React.SetStateAction<number>>; // Função para atualizar o passo atual
-  billingType: 'monthly' | 'yearly'; // Tipo de faturamento
+  selectedAddOns: { name: string; price: number }[];
+  setSelectedAddOns: (addOns: { name: string; price: number }[]) => void;
+  currentStep: number;
+  setCurrentStep: React.Dispatch<React.SetStateAction<number>>;
+  billingType: 'monthly' | 'yearly';
 }
 
 const AddOnsForm: React.FC<AddOnsFormProps> = ({
@@ -28,13 +28,16 @@ const AddOnsForm: React.FC<AddOnsFormProps> = ({
   setSelectedAddOns,
   currentStep,
   setCurrentStep,
-  billingType, // Recebe o tipo de faturamento
+  billingType,
 }) => {
-  const handleToggle = (addOn: string) => {
-    if (selectedAddOns.includes(addOn)) {
-      setSelectedAddOns(selectedAddOns.filter(item => item !== addOn));
+  const handleToggle = (addOn: AddOn) => {
+    const addOnPrice = billingType === 'yearly' ? parseInt(addOn.yearlyPrice.replace(/\D/g, '')) : parseInt(addOn.monthlyPrice.replace(/\D/g, ''));
+    const exists = selectedAddOns.some(item => item.name === addOn.name);
+
+    if (exists) {
+      setSelectedAddOns(selectedAddOns.filter(item => item.name !== addOn.name));
     } else {
-      setSelectedAddOns([...selectedAddOns, addOn]);
+      setSelectedAddOns([...selectedAddOns, { name: addOn.name, price: addOnPrice }]);
     }
   };
 
@@ -46,21 +49,21 @@ const AddOnsForm: React.FC<AddOnsFormProps> = ({
         {addOns.map((addOn) => (
           <label
             key={addOn.name}
-            className={`flex items-center justify-between p-4 border border-light-gray rounded-lg cursor-pointer hover:bg-light-gray ${selectedAddOns.includes(addOn.name) ? 'bg-[#f8f8fb] border-[#706aa8]' : ''
+            className={`flex items-center justify-between p-4 border border-light-gray rounded-lg cursor-pointer hover:bg-light-gray ${selectedAddOns.some(item => item.name === addOn.name) ? 'bg-[#f8f8fb] border-[#706aa8]' : ''
               }`}
           >
             <div className="flex items-center">
               <input
                 type="checkbox"
-                checked={selectedAddOns.includes(addOn.name)}
-                onChange={() => handleToggle(addOn.name)}
+                checked={selectedAddOns.some(item => item.name === addOn.name)}
+                onChange={() => handleToggle(addOn)}
                 className="hidden" // Oculta o checkbox padrão
               />
               <div
-                className={`w-5 h-5 border-2 rounded-md flex items-center justify-center mr-4 transition-all duration-200 ${selectedAddOns.includes(addOn.name) ? 'bg-[#403afd] border-[#403afd]' : 'border-light-gray'
+                className={`w-5 h-5 border-2 rounded-md flex items-center justify-center mr-4 transition-all duration-200 ${selectedAddOns.some(item => item.name === addOn.name) ? 'bg-[#403afd] border-[#403afd]' : 'border-light-gray'
                   }`}
               >
-                {selectedAddOns.includes(addOn.name) && (
+                {selectedAddOns.some(item => item.name === addOn.name) && (
                   <svg
                     className="w-3 h-3 text-white"
                     fill="none"
@@ -87,7 +90,7 @@ const AddOnsForm: React.FC<AddOnsFormProps> = ({
         <GoBackButton onClick={() => setCurrentStep(currentStep - 1)} />
         <NextButton onClick={() => setCurrentStep(currentStep + 1)} />
       </div>
-    </div >
+    </div>
   );
 };
 
