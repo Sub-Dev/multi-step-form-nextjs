@@ -1,16 +1,16 @@
-// src/components/SelectPlan.tsx
 "use client";
 import React, { useState } from 'react';
 import NextButton from './NextButton';
 import GoBackButton from './GoBackButton';
 
 interface SelectPlanProps {
-  currentStep: number; // Recebe o passo atual
-  setCurrentStep: React.Dispatch<React.SetStateAction<number>>; // Função para atualizar o passo atual
-  setBillingType: React.Dispatch<React.SetStateAction<'monthly' | 'yearly'>>; // Função para atualizar o tipo de faturamento
+  currentStep: number;
+  setCurrentStep: React.Dispatch<React.SetStateAction<number>>;
+  setBillingType: React.Dispatch<React.SetStateAction<'monthly' | 'yearly'>>;
+  handlePlanSelect: (plan: { name: string; price: number }) => void;
 }
 
-const SelectPlan: React.FC<SelectPlanProps> = ({ currentStep, setCurrentStep, setBillingType }) => {
+const SelectPlan: React.FC<SelectPlanProps> = ({ currentStep, setCurrentStep, setBillingType, handlePlanSelect }) => {
   const [selectedPlan, setSelectedPlan] = useState('Arcade');
   const [isMonthly, setIsMonthly] = useState(true);
 
@@ -25,9 +25,13 @@ const SelectPlan: React.FC<SelectPlanProps> = ({ currentStep, setCurrentStep, se
   };
 
   const handleNext = () => {
-    // Define o tipo de faturamento antes de mudar o passo
     setBillingType(isMonthly ? 'monthly' : 'yearly');
     setCurrentStep(currentStep + 1);
+  };
+
+  const handlePlanClick = (plan: { name: string; price: number }) => {
+    setSelectedPlan(plan.name);
+    handlePlanSelect(plan); // Chama a função para atualizar o plano no componente pai
   };
 
   return (
@@ -41,14 +45,13 @@ const SelectPlan: React.FC<SelectPlanProps> = ({ currentStep, setCurrentStep, se
             <div
               key={plan.name}
               className={`p-4 border rounded-lg cursor-pointer ${selectedPlan === plan.name ? 'bg-[#f8f8fb] border-[#706aa8]' : 'border-light-gray'}`}
-              onClick={() => setSelectedPlan(plan.name)}
+              onClick={() => handlePlanClick(plan)}
             >
               <img src={plan.icon} alt={`${plan.name} icon`} className="w-8 h-8 mb-10" />
               <h3 className={`font-bold ${selectedPlan === plan.name ? 'text-[#032855]' : 'text-black'}`}>{plan.name}</h3>
               <p className={`text-cool-gray ${selectedPlan === plan.name ? 'text-[#032855]' : ''}`}>
                 ${isMonthly ? plan.price : plan.price * 10}/mo
               </p>
-              {/* Exibe a mensagem "2 months free" se o plano for anual */}
               {!isMonthly && (
                 <p className="text-[#032855] text-sm mt-2">2 months free</p>
               )}
@@ -69,7 +72,7 @@ const SelectPlan: React.FC<SelectPlanProps> = ({ currentStep, setCurrentStep, se
 
       <div className="flex justify-between">
         <GoBackButton onClick={() => setCurrentStep(currentStep - 1)} />
-        <NextButton onClick={handleNext} /> {/* Atualiza para usar handleNext */}
+        <NextButton onClick={handleNext} />
       </div>
     </div>
   );
