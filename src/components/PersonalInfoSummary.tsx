@@ -51,7 +51,7 @@ const Summary: React.FC<SummaryProps> = ({ selectedPlan, selectedAddOns, billing
         <hr className="border-t border-gray-300 my-2" />
 
         {selectedAddOns.map((addOn, index) => (
-          <div key={index} className="flex justify-between mb-6 text-gray-500">
+          <div key={index} className="flex justify-between mb-3 text-gray-500">
             <span>{addOn.name}</span>
             <span className='text-black'>
               +${billingType === 'yearly' ? addOn.price * 10 : addOn.price}/{billingType === 'monthly' ? 'mo' : 'yr'}

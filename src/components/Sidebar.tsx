@@ -1,4 +1,4 @@
-"use client";
+// "use client";
 import React from 'react';
 
 interface SidebarProps {
@@ -6,35 +6,43 @@ interface SidebarProps {
 }
 
 const Sidebar: React.FC<SidebarProps> = ({ currentStep }) => {
+  const isMobile = window.innerWidth < 376;
   return (
-    <div
-      className="col-span-2 bg-cover bg-no-repeat bg-center px-10 py-6 rounded-l-lg" // Reduzi o espaçamento lateral e adicionei bordas arredondadas
-      style={{ backgroundImage: 'url(images/bg-sidebar-desktop.svg)' }}
-    >
-      <ul className="space-y-4 text-lg"> {/* Reduzi o espaçamento vertical */}
-        {["YOUR INFO", "SELECT PLAN", "ADD-ONS", "SUMMARY"].map((label, index) => {
-          const step = index + 1;
-          const isActive = step === currentStep;
-          return (
-            <li key={step} className="flex items-center space-x-2 text-[14px]"> {/* Reduzi o espaçamento lateral */}
-              <div className="flex items-center">
-                <div
-                  className={`rounded-full h-8 w-8 flex items-center justify-center font-bold ${isActive
-                    ? "bg-[#bee1fc] text-black border border-white"
-                    : "bg-transparent text-white border border-white"
-                    }`}
-                >
-                  {step}
+    <div className="absolute top-0 left-0 w-full sm:relative sm:w-auto sm:col-span-2">
+      <div
+        className={`absolute top-0 left-0 w-full h-full ${window.innerWidth < 640 ? 'h-[25vh]' : 'h-full'} bg-cover bg-no-repeat px-6 py-20 sm:relative sm:px-10 sm:py-6 sm:bg-top`}
+        style={{
+          backgroundImage: `url(${window.innerWidth < 640 ? 'images/bg-sidebar-mobile.svg' : 'images/bg-sidebar-desktop.svg'})`,
+          backgroundSize: 'cover', // Faz a imagem cobrir todo o espaço disponível
+          backgroundPosition: 'center', // Centraliza a imagem
+        }}
+      >
+        <ul className={`flex sm:flex-col justify-center space-x-4 sm:space-x-0 sm:space-y-4 sm:text-lg relative z-20 mb-6 ${isMobile ? 'mt-[-60px]' : ''}`}>
+          {["YOUR INFO", "SELECT PLAN", "ADD-ONS", "SUMMARY"].map((label, index) => {
+            const step = index + 1;
+            const isActive = step === currentStep;
+            return (
+              <li key={step} className="flex items-center justify-center sm:justify-start space-x-2">
+                <div className="flex items-center">
+                  <div
+                    className={`rounded-full h-8 w-8 flex items-center justify-center font-bold ${isActive
+                      ? "bg-[#bee1fc] text-black border border-white"
+                      : "bg-transparent text-white border border-white"
+                      }`}
+                  >
+                    {step}
+                  </div>
+                  {/* Exibe o texto apenas em telas médias ou maiores */}
+                  <div className="hidden sm:flex flex-col ml-2 text-[12px] mt-1">
+                    <span className="text-xs font-semibold text-gray-400">STEP {step}</span>
+                    <span className={`font-bold ${isActive ? "text-white" : "text-white"}`}>{label}</span>
+                  </div>
                 </div>
-                <div className="flex flex-col ml-2 text-[12px] mt-1"> {/* Reduzi o espaçamento entre o número e o texto */}
-                  <span className="text-xs font-semibold text-gray-400">STEP {step}</span>
-                  <span className={`font-bold ${isActive ? "text-white" : "text-white"}`}>{label}</span>
-                </div>
-              </div>
-            </li>
-          );
-        })}
-      </ul>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
     </div>
   );
 };
