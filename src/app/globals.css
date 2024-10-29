@@ -13,3 +13,9 @@ body {
   background-color: var(--background);
   font-family: "Ubuntu", sans-serif;
 }
+
+@media (max-width: 375px) {
+  .mt-negative-60 {
+    margin-top: -60px;
+  }
+}
