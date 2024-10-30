@@ -1,18 +1,29 @@
-// "use client";
-import React from 'react';
+"use client"; // Certifique-se de que você precisa dessa linha
+
+import React, { useState, useEffect } from 'react';
 
 interface SidebarProps {
   currentStep: number;
 }
 
 const Sidebar: React.FC<SidebarProps> = ({ currentStep }) => {
-  const isMobile = window.innerWidth < 376;
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 640);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 640);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   return (
     <div className="absolute top-0 left-0 w-full sm:relative sm:w-auto sm:col-span-2">
       <div
-        className={`absolute top-0 left-0 w-full h-full ${window.innerWidth < 640 ? 'h-[25vh]' : 'h-full'} bg-cover bg-no-repeat px-6 py-20 sm:relative sm:px-10 sm:py-6 sm:bg-top`}
+        className={`absolute rounded-lg top-0 left-0 w-full h-full ${isMobile ? 'h-[25vh]' : 'h-full'} bg-cover bg-no-repeat px-6 py-20 sm:relative sm:px-10 sm:py-6 sm:bg-top`}
         style={{
-          backgroundImage: `url(${window.innerWidth < 640 ? 'images/bg-sidebar-mobile.svg' : 'images/bg-sidebar-desktop.svg'})`,
+          backgroundImage: `url(${isMobile ? 'images/bg-sidebar-mobile.svg' : 'images/bg-sidebar-desktop.svg'})`,
           backgroundSize: 'cover', // Faz a imagem cobrir todo o espaço disponível
           backgroundPosition: 'center', // Centraliza a imagem
         }}

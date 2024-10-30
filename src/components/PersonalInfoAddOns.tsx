@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import NextButton from './NextButton';
 import GoBackButton from './GoBackButton';
 
@@ -40,12 +40,25 @@ const AddOnsForm: React.FC<AddOnsFormProps> = ({
       setSelectedAddOns([...selectedAddOns, { name: addOn.name, price: addOnPrice }]);
     }
   };
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 640);
 
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 640);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const handleNext = () => {
+    setCurrentStep(currentStep + 1);
+  };
   return (
-    <div className="p-10 bg-white rounded-r-lg relative flex flex-col justify-between h-[100%] w-[100%]">
+    <div className={`bg-white rounded-lg relative flex flex-col justify-between ${isMobile ? 'p-4 h-[75vh] w-full' : 'p-10 h-full w-full rounded-r-lg'}`}>
       <h2 className="text-3xl font-bold mb-1 text-black">Pick add-ons</h2>
       <p className="text-gray-400 mb-6">Add-ons help enhance your gaming experience.</p>
-      <div className="space-y-4">
+      <div className="space-y-4 flex-grow">
         {addOns.map((addOn) => (
           <label
             key={addOn.name}
@@ -86,10 +99,19 @@ const AddOnsForm: React.FC<AddOnsFormProps> = ({
           </label>
         ))}
       </div>
-      <div className="flex justify-between mt-auto">
-        <GoBackButton onClick={() => setCurrentStep(currentStep - 1)} />
-        <NextButton onClick={() => setCurrentStep(currentStep + 1)} />
-      </div>
+
+      {/* Botões para desktop e mobile */}
+      {!isMobile ? (
+        <div className="flex justify-between">
+          <GoBackButton onClick={() => setCurrentStep(currentStep - 1)} />
+          <NextButton onClick={handleNext} />
+        </div>
+      ) : (
+        <div className="fixed bottom-0 left-0 w-full bg-white shadow-md p-4 flex justify-between">
+          <GoBackButton onClick={() => setCurrentStep(currentStep - 1)} />
+          <NextButton onClick={handleNext} />
+        </div>
+      )}
     </div>
   );
 };
