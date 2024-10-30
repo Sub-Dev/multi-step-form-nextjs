@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import NextButton from './NextButton';
 import GoBackButton from './GoBackButton';
 
@@ -10,6 +10,17 @@ interface SummaryProps {
 }
 
 const Summary: React.FC<SummaryProps> = ({ selectedPlan, selectedAddOns, billingType, setCurrentStep }) => {
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 640);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 640);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   // Função para calcular o preço total
   const calculateTotal = () => {
     const planPrice = billingType === 'yearly' ? selectedPlan.price * 10 : selectedPlan.price;
@@ -24,11 +35,11 @@ const Summary: React.FC<SummaryProps> = ({ selectedPlan, selectedAddOns, billing
   const handleNext = () => setCurrentStep(5);
 
   return (
-    <div className="p-10 bg-white rounded-r-lg relative flex flex-col justify-between h-[100%] w-[100%]">
+    <div className="p-10 bg-white rounded-lg relative flex flex-col justify-between h-full w-full">
       <h2 className="text-3xl font-bold mb-1 text-black">Finishing up</h2>
       <p className="text-gray-400 mb-6">Double-check everything looks OK before confirming.</p>
 
-      <div className="bg-[#f8f8fb] p-4 rounded-lg mb-6">
+      <div className="bg-[#f8f8fb] p-4 rounded-lg mb-6 flex-grow">
         <div className="flex justify-between items-center mb-6">
           <div>
             <span className="font-bold text-black">
@@ -66,12 +77,19 @@ const Summary: React.FC<SummaryProps> = ({ selectedPlan, selectedAddOns, billing
           +${calculateTotal()}/{billingType === 'monthly' ? 'mo' : 'yr'}
         </span>
       </div>
-
-      <div className="flex justify-between mt-2">
-        <GoBackButton onClick={() => setCurrentStep(3)} />
-        <NextButton onClick={handleNext} label="Confirm" />
-      </div>
-    </div>
+      {/* Botões para desktop e mobile */}
+      {!isMobile ? (
+        <div className="flex justify-between mt-2">
+          <GoBackButton onClick={() => setCurrentStep(3)} />
+          <NextButton onClick={handleNext} label="Confirm" />
+        </div>
+      ) : (
+        < div className={`fixed bottom-0 left-0 w-full bg-white shadow-md p-4 flex justify-between z-10`}>
+          <GoBackButton onClick={() => setCurrentStep(3)} />
+          <NextButton onClick={handleNext} label="Confirm" />
+        </div>
+      )}
+    </div >
   );
 };
 
