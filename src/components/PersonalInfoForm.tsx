@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import NextButton from './NextButton';
 
 interface PersonalInfoFormProps {
@@ -19,7 +19,16 @@ const PersonalInfoForm: React.FC<PersonalInfoFormProps> = ({
   setCurrentStep,
   currentStep,
 }) => {
-  // Estado para mensagens de erro
+
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const checkIsMobile = () => setIsMobile(window.innerWidth < 640);
+
+    checkIsMobile();
+    window.addEventListener('resize', checkIsMobile);
+
+    return () => window.removeEventListener('resize', checkIsMobile);
+  }, []);
   const [errors, setErrors] = useState<{ name?: string; email?: string; phone?: string }>({});
 
   const validateForm = () => {
@@ -113,9 +122,19 @@ const PersonalInfoForm: React.FC<PersonalInfoFormProps> = ({
         )}
       </div>
 
-      <div className="fixed bottom-0 left-0 w-full bg-white shadow-md p-4 flex justify-end">
-        <NextButton onClick={handleNext} />
-      </div>
+      {/* Exibe o botão "Next" no formulário apenas em telas maiores */}
+      {!isMobile && (
+        <div className="flex justify-end">
+          <NextButton onClick={handleNext} />
+        </div>
+      )}
+
+      {/* Botão "Next" fixo na parte inferior da tela em dispositivos móveis */}
+      {isMobile && (
+        <div className="fixed bottom-0 left-0 w-full bg-white shadow-md p-4 flex justify-end">
+          <NextButton onClick={handleNext} />
+        </div>
+      )}
     </div>
   );
 };
