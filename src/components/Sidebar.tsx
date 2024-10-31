@@ -1,4 +1,4 @@
-"use client"; // Certifique-se de que você precisa dessa linha
+"use client";
 
 import React, { useState, useEffect } from 'react';
 
@@ -7,12 +7,14 @@ interface SidebarProps {
 }
 
 const Sidebar: React.FC<SidebarProps> = ({ currentStep }) => {
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 640);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 640);
     };
+
+    handleResize();
 
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
@@ -24,8 +26,8 @@ const Sidebar: React.FC<SidebarProps> = ({ currentStep }) => {
         className={`absolute rounded-lg top-0 left-0 w-full h-full ${isMobile ? 'h-[25vh]' : 'h-full'} bg-cover bg-no-repeat px-6 py-20 sm:relative sm:px-10 sm:py-6 sm:bg-top`}
         style={{
           backgroundImage: `url(${isMobile ? 'images/bg-sidebar-mobile.svg' : 'images/bg-sidebar-desktop.svg'})`,
-          backgroundSize: 'cover', // Faz a imagem cobrir todo o espaço disponível
-          backgroundPosition: 'center', // Centraliza a imagem
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
         }}
       >
         <ul className={`flex sm:flex-col justify-center space-x-4 sm:space-x-0 sm:space-y-4 sm:text-lg relative z-20 mb-6 ${isMobile ? 'mt-[-60px]' : ''}`}>
@@ -43,7 +45,6 @@ const Sidebar: React.FC<SidebarProps> = ({ currentStep }) => {
                   >
                     {step}
                   </div>
-                  {/* Exibe o texto apenas em telas médias ou maiores */}
                   <div className="hidden sm:flex flex-col ml-2 text-[12px] mt-1">
                     <span className="text-xs font-semibold text-gray-400">STEP {step}</span>
                     <span className={`font-bold ${isActive ? "text-white" : "text-white"}`}>{label}</span>

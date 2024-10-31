@@ -9,8 +9,8 @@ interface PersonalInfoFormProps {
     phone: string;
   };
   handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  setCurrentStep: (step: number) => void; // Adiciona setCurrentStep como prop
-  currentStep: number; // Passa o passo atual como prop
+  setCurrentStep: (step: number) => void;
+  currentStep: number;
 }
 
 const PersonalInfoForm: React.FC<PersonalInfoFormProps> = ({
@@ -19,7 +19,6 @@ const PersonalInfoForm: React.FC<PersonalInfoFormProps> = ({
   setCurrentStep,
   currentStep,
 }) => {
-
   const [isMobile, setIsMobile] = useState(false);
   useEffect(() => {
     const checkIsMobile = () => setIsMobile(window.innerWidth < 640);
@@ -29,33 +28,31 @@ const PersonalInfoForm: React.FC<PersonalInfoFormProps> = ({
 
     return () => window.removeEventListener('resize', checkIsMobile);
   }, []);
+
   const [errors, setErrors] = useState<{ name?: string; email?: string; phone?: string }>({});
 
   const validateForm = () => {
     const newErrors: { name?: string; email?: string; phone?: string } = {};
 
-    // Validação do nome
     if (!formData.name) {
       newErrors.name = 'Name is required';
     }
 
-    // Validação do email
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Expressão regular para validação de email
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!formData.email) {
       newErrors.email = 'Email is required';
     } else if (!emailPattern.test(formData.email)) {
       newErrors.email = 'Email is invalid';
     }
 
-    // Validação do telefone
     if (!formData.phone) {
       newErrors.phone = 'Phone number is required';
-    } else if (!/^\+?[0-9\s]+$/.test(formData.phone)) { // Ajuste a expressão regular conforme necessário
+    } else if (!/^\+?[0-9\s]+$/.test(formData.phone)) {
       newErrors.phone = 'Phone number is invalid';
     }
 
     setErrors(newErrors);
-    return Object.keys(newErrors).length === 0; // Retorna true se não houver erros
+    return Object.keys(newErrors).length === 0;
   };
 
   const handleNext = () => {
@@ -71,7 +68,7 @@ const PersonalInfoForm: React.FC<PersonalInfoFormProps> = ({
         Please provide your name, email address, and phone number.
       </p>
 
-      <div className="mb-6 relative"> {/* Adicionado relative aqui */}
+      <div className="mb-6 relative">
         <label className="block text-sm mb-2 text-black">Name</label>
         <input
           className={`w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-pastel-blue ${errors.name ? 'border-red-500' : 'border-light-gray'}`}
@@ -88,7 +85,7 @@ const PersonalInfoForm: React.FC<PersonalInfoFormProps> = ({
         )}
       </div>
 
-      <div className="mb-6 relative"> {/* Adicionado relative aqui */}
+      <div className="mb-6 relative">
         <label className="block text-sm mb-2 text-black">Email Address</label>
         <input
           className={`w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-pastel-blue ${errors.email ? 'border-red-500' : 'border-light-gray'}`}
@@ -105,7 +102,7 @@ const PersonalInfoForm: React.FC<PersonalInfoFormProps> = ({
         )}
       </div>
 
-      <div className="mb-6 relative"> {/* Adicionado relative aqui */}
+      <div className="mb-6 relative">
         <label className="block text-sm mb-2 text-black">Phone Number</label>
         <input
           className={`w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-pastel-blue ${errors.phone ? 'border-red-500' : 'border-light-gray'}`}
@@ -122,14 +119,12 @@ const PersonalInfoForm: React.FC<PersonalInfoFormProps> = ({
         )}
       </div>
 
-      {/* Exibe o botão "Next" no formulário apenas em telas maiores */}
       {!isMobile && (
         <div className="flex justify-end">
           <NextButton onClick={handleNext} />
         </div>
       )}
 
-      {/* Botão "Next" fixo na parte inferior da tela em dispositivos móveis */}
       {isMobile && (
         <div className="fixed bottom-0 left-0 w-full bg-white shadow-md p-4 flex justify-end">
           <NextButton onClick={handleNext} />

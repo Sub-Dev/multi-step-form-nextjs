@@ -1,3 +1,4 @@
+"use client";
 import React, { useState, useEffect } from 'react';
 import NextButton from './NextButton';
 import GoBackButton from './GoBackButton';
@@ -54,7 +55,8 @@ const SelectPlan: React.FC<SelectPlanProps> = ({ currentStep, setCurrentStep, se
           {plans.map((plan) => (
             <div
               key={plan.name}
-              className={`cursor-pointer border rounded-lg ${selectedPlan === plan.name ? 'bg-[#f8f8fb] border-[#706aa8]' : 'border-light-gray'} ${isMobile ? 'p-2 flex items-center mb-2' : 'p-4'}`}
+              className={`cursor-pointer border rounded-lg ${selectedPlan === plan.name ? 'bg-[#f8f8fb] border-[#706aa8]' : 'border-light-gray'
+                } hover:border-[#706aa8] ${isMobile ? 'p-2 flex items-center mb-2' : 'p-4'}`}
               onClick={() => handlePlanClick(plan)}
             >
               <img src={plan.icon} alt={`${plan.name} icon`} className={`${isMobile ? 'w-8 h-8 mr-2' : 'w-10 h-10 mb-10'}`} />
@@ -86,7 +88,6 @@ const SelectPlan: React.FC<SelectPlanProps> = ({ currentStep, setCurrentStep, se
         <span className={`ml-3 ${!isMonthly ? 'text-[#032855]' : 'text-cool-gray'} text-sm`}>Yearly</span>
       </div>
 
-      {/* Botões para desktop e mobile */}
       {!isMobile ? (
         <div className="flex justify-between">
           <GoBackButton onClick={() => setCurrentStep(currentStep - 1)} />

@@ -1,3 +1,4 @@
+"use client";
 import React, { useState, useEffect } from 'react';
 import NextButton from './NextButton';
 import GoBackButton from './GoBackButton';
@@ -5,8 +6,8 @@ import GoBackButton from './GoBackButton';
 interface AddOn {
   name: string;
   description: string;
-  monthlyPrice: string; // Preço mensal
-  yearlyPrice: string; // Preço anual
+  monthlyPrice: string;
+  yearlyPrice: string;
 }
 
 const addOns: AddOn[] = [
@@ -70,7 +71,7 @@ const AddOnsForm: React.FC<AddOnsFormProps> = ({
                 type="checkbox"
                 checked={selectedAddOns.some(item => item.name === addOn.name)}
                 onChange={() => handleToggle(addOn)}
-                className="hidden" // Oculta o checkbox padrão
+                className="hidden"
               />
               <div
                 className={`w-5 h-5 border-2 rounded-md flex items-center justify-center mr-4 transition-all duration-200 ${selectedAddOns.some(item => item.name === addOn.name) ? 'bg-[#403afd] border-[#403afd]' : 'border-light-gray'
@@ -100,7 +101,6 @@ const AddOnsForm: React.FC<AddOnsFormProps> = ({
         ))}
       </div>
 
-      {/* Botões para desktop e mobile */}
       {!isMobile ? (
         <div className="flex justify-between">
           <GoBackButton onClick={() => setCurrentStep(currentStep - 1)} />
