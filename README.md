@@ -1,25 +1,25 @@
-# Multi-step Form Solution
+# 📝 Multi-step Form Solution
 
 ![Design preview for the Multi-step form coding challenge](./public/desktop-preview.jpg)
 
 Esta é uma solução para o [Multi-step form challenge no Frontend Mentor](https://www.frontendmentor.io/challenges/multistep-form-YVAnSdqQBJ). Os desafios do Frontend Mentor ajudam a melhorar as habilidades de codificação através da construção de projetos realistas.
 
-## Índice
+## 📑 Índice
 
-- [Visão Geral](#visão-geral)
-  - [O Desafio](#o-desafio)
-  - [Screenshot](#screenshot)
-  - [Links](#links)
-- [Meu Processo](#meu-processo)
-  - [Tecnologias Utilizadas](#tecnologias-utilizadas)
-  - [O que Aprendi](#o-que-aprendi)
-- [Como Executar](#como-executar)
-- [Autor](#autor)
-- [English Version](#english-version)
+- [🔍 Visão Geral](#visão-geral)
+  - [🎯 O Desafio](#o-desafio)
+  - [📸 Screenshot](#screenshot)
+  - [🔗 Links](#links)
+- [💻 Meu Processo](#meu-processo)
+  - [🛠️  Tecnologias Utilizadas](#tecnologias-utilizadas)
+  - [📚 O que Aprendi](#o-que-aprendi)
+- [⚙️ Como Executar](#como-executar)
+- [👤 Autor](#autor)
+- [🌎 English Version](#english-version)
 
-## Visão Geral
+## 🔍 Visão Geral
 
-### O Desafio
+### 🎯 O Desafio
 
 Os usuários devem ser capazes de:
 
@@ -33,23 +33,28 @@ Os usuários devem ser capazes de:
   - O endereço de email está em formato incorreto
   - Um passo é enviado, mas nenhuma seleção foi feita
 
-### Screenshot
+### 📸 Screenshot
 
 ![first-step](./public/firststep.png)
 ![second-step](./public/secondstep.png)
 ![third-step](./public/thirdstep.png)
-![first-step-mobile](./public/firststep-mobile.png)
-![second-step-mobile](./public/secondstep-mobile.png)
-![fourth-step-mobile](./public/fourthstep-mobile.png)
 
-### Links
+<table>
+  <tr>
+    <td><img alt="first-step-mobile" src="./public/firststep-mobile.png" width="100%"></td>
+    <td><img alt="second-step-mobile" src="./public/secondstep-mobile.png" width="100%"></td>
+    <td><img alt="fourth-step-mobile" src="./public/fourthstep-mobile.png" width="100%"></td>
+  </tr>
+</table>
+
+### 🔗 Links
 
 - URL da Solução: [Adicione a URL da solução](https://your-solution-url.com)
 - URL do Site: [Adicione a URL do site](https://your-live-site-url.com)
 
-## Meu Processo
+## 💻 Meu Processo
 
-### Tecnologias Utilizadas
+### 🛠️ Tecnologias Utilizadas
 
 - [Next.js](https://nextjs.org/) - Framework React
 - [React](https://reactjs.org/) - Biblioteca JS
@@ -59,7 +64,7 @@ Os usuários devem ser capazes de:
 - Componentes React reutilizáveis
 - Gerenciamento de estado com React Hooks
 
-### O que Aprendi
+### 📚 O que Aprendi
 
 Durante o desenvolvimento deste projeto, adquiri diversos conhecimentos importantes:
 
@@ -129,7 +134,7 @@ Implementei detecção responsiva de dispositivos usando React Hooks.
 
 Este projeto me permitiu aplicar conceitos avançados de desenvolvimento front-end e melhorar minhas habilidades com o ecossistema React/Next.js.
 
-## Como Executar
+## ⚙️ Como Executar
 
 1. Clone o repositório:
 
@@ -155,7 +160,7 @@ yarn dev
 
 4. Abra [http://localhost:3000](http://localhost:3000) no seu navegador para ver o resultado.
 
-## Autor
+## 👤 Autor
 
 <table>
  <tr>
@@ -172,11 +177,11 @@ yarn dev
 
 - Frontend Mentor - [@Sub-Dev](https://www.frontendmentor.io/profile/Sub-Dev)
 
-## Agradecimentos
+## 🙏 Agradecimentos
 
 Agradecimentos especiais à comunidade de código aberto pelos recursos e ferramentas inestimáveis ​​que tornaram este projeto possível.
 
-## Licença
+## 📝 Licença
 
 Este projeto está licenciado sob a Licença MIT.
 
@@ -184,25 +189,25 @@ Este projeto está licenciado sob a Licença MIT.
 
 <h2 align="center">🌎 English Version 🌎</h2>
 
-# Multi-step Form Solution
+# 📝 Multi-step Form Solution
 
 This is a solution to the [Multi-step form challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/multistep-form-YVAnSdqQBJ). Frontend Mentor challenges help you improve your coding skills by building realistic projects.
 
-## Table of contents
+## 📑 Table of contents
 
-- [Overview](#overview)
-  - [The Challenge](#the-challenge)
-  - [Screenshot](#screenshot-1)
-  - [Links](#links-1)
-- [My Process](#my-process)
-  - [Built with](#built-with)
-  - [What I Learned](#what-i-learned)
-- [How to Run](#how-to-run)
-- [Author](#author-1)
+- [🔍 Overview](#overview)
+  - [🎯 The Challenge](#the-challenge)
+  - [📸 Screenshot](#screenshot-1)
+  - [🔗 Links](#links-1)
+- [💻 My Process](#my-process)
+  - [🛠️ Built with](#built-with)
+  - [📚 What I Learned](#what-i-learned)
+- [⚙️ How to Run](#how-to-run)
+- [👤 Author](#author-1)
 
-## Overview
+## 🔍 Overview
 
-### The Challenge
+### 🎯 The Challenge
 
 Users should be able to:
 
@@ -216,23 +221,28 @@ Users should be able to:
   - The email address is not formatted correctly
   - A step is submitted, but no selection has been made
 
-### Screenshot
+### 📸 Screenshot
 
 ![first-step](./public/firststep.png)
 ![second-step](./public/secondstep.png)
 ![third-step](./public/thirdstep.png)
-![first-step-mobile](./public/firststep-mobile.png)
-![second-step-mobile](./public/secondstep-mobile.png)
-![fourth-step-mobile](./public/fourthstep-mobile.png)
 
-### Links
+<table>
+  <tr>
+    <td><img alt="first-step-mobile" src="./public/firststep-mobile.png" width="100%"></td>
+    <td><img alt="second-step-mobile" src="./public/secondstep-mobile.png" width="100%"></td>
+    <td><img alt="fourth-step-mobile" src="./public/fourthstep-mobile.png" width="100%"></td>
+  </tr>
+</table>
+
+### 🔗 Links
 
 - Solution URL: [Add solution URL here](https://your-solution-url.com)
 - Live Site URL: [Add live site URL here](https://your-live-site-url.com)
 
-## My Process
+## 💻 My Process
 
-### Built with
+### 🛠️ Built with
 
 - [Next.js](https://nextjs.org/) - React framework
 - [React](https://reactjs.org/) - JS library
@@ -242,7 +252,7 @@ Users should be able to:
 - Reusable React components
 - State management with React Hooks
 
-### What I Learned
+### 📚 What I Learned
 
 During the development of this project, I gained several important insights:
 
@@ -254,7 +264,7 @@ During the development of this project, I gained several important insights:
 - TypeScript type safety
 - React Hooks best practices
 
-## How to Run
+## ⚙️ How to Run
 
 1. Clone the repository:
 
@@ -276,7 +286,7 @@ npm run dev
 
 4. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-## Autor
+## 👤 Autor
 
 <table>
  <tr>
@@ -293,10 +303,10 @@ npm run dev
 
 - Frontend Mentor - [@Sub-Dev](https://www.frontendmentor.io/profile/Sub-Dev)
 
-## Acknowledgements
+## 🙏 Acknowledgements
 
 Special thanks to the open source community for the invaluable resources and tools that made this project possible.
 
-## License
+## 📝 License
 
 This project is licensed under the MIT License.
