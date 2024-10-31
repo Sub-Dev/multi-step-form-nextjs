@@ -49,8 +49,8 @@ Os usuários devem ser capazes de:
 
 ### 🔗 Links
 
-- URL da Solução: [Adicione a URL da solução](https://your-solution-url.com)
-- URL do Site: [Adicione a URL do site](https://your-live-site-url.com)
+- URL da Solução: [Frontendmentor](https://www.frontendmentor.io/solutions/multi-step-form-using-next-js-9UUcrB_4Nl)
+- URL do Site: [DEMO](https://multi-step-form-nextjs-iota.vercel.app/)
 
 ## 💻 Meu Processo
 
@@ -237,8 +237,8 @@ Users should be able to:
 
 ### 🔗 Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Solution URL:  [Frontendmentor](https://www.frontendmentor.io/solutions/multi-step-form-using-next-js-9UUcrB_4Nl)
+- Live Site URL: [DEMO](https://multi-step-form-nextjs-iota.vercel.app/)
 
 ## 💻 My Process
 
