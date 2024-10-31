@@ -2,8 +2,8 @@
 import React, { useState } from 'react';
 import Sidebar from './Sidebar';
 import PersonalInfoForm from './PersonalInfoForm';
-import SelectPlan from './PersonalInfoPlan'; // Corrigido o nome da importação para o componente de planos
-import AddOnsForm from './PersonalInfoAddOns'; // Importando o componente AddOnsForm
+import SelectPlan from './PersonalInfoPlan';
+import AddOnsForm from './PersonalInfoAddOns';
 import Summary from './PersonalInfoSummary';
 import ThankYou from './PersonalInfoThankYou';
 
@@ -14,10 +14,10 @@ const PersonalInfo = () => {
     phone: ''
   });
 
-  const [currentStep, setCurrentStep] = useState(1); // Estado para o passo atual
-  const [selectedPlan, setSelectedPlan] = useState<{ name: string; price: number }>({ name: 'Arcade', price: 9 }); // Estado para o plano selecionado
-  const [selectedAddOns, setSelectedAddOns] = useState<{ name: string; price: number }[]>([]); // Estado para add-ons selecionados
-  const [billingType, setBillingType] = useState<'monthly' | 'yearly'>('monthly'); // Estado para o tipo de faturamento
+  const [currentStep, setCurrentStep] = useState(1);
+  const [selectedPlan, setSelectedPlan] = useState<{ name: string; price: number }>({ name: 'Arcade', price: 9 });
+  const [selectedAddOns, setSelectedAddOns] = useState<{ name: string; price: number }[]>([]);
+  const [billingType, setBillingType] = useState<'monthly' | 'yearly'>('monthly');
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
@@ -27,12 +27,11 @@ const PersonalInfo = () => {
   };
 
   const handlePlanSelect = (plan: { name: string; price: number }) => {
-    setSelectedPlan(plan); // Atualiza o plano selecionado
+    setSelectedPlan(plan);
   };
 
   return (
     <>
-      {/* Div que será removida no mobile */}
       <div className="hidden sm:grid bg-white p-3 rounded-lg shadow-lg grid-cols-7 max-w-5xl pl-3 min-h-[550px] min-w-[75%]">
         <Sidebar currentStep={currentStep} />
         <div className="col-span-5 ml-3 flex flex-col justify-between min-h-[500px]">
@@ -49,13 +48,13 @@ const PersonalInfo = () => {
               currentStep={currentStep}
               setCurrentStep={setCurrentStep}
               setBillingType={setBillingType}
-              handlePlanSelect={handlePlanSelect} // Adiciona a função de seleção de plano
+              handlePlanSelect={handlePlanSelect}
             />
           )}
           {currentStep === 3 && (
             <AddOnsForm
-              selectedAddOns={selectedAddOns}       // Passa o estado selectedAddOns
-              setSelectedAddOns={setSelectedAddOns} // Passa a função setSelectedAddOns
+              selectedAddOns={selectedAddOns}
+              setSelectedAddOns={setSelectedAddOns}
               currentStep={currentStep}
               setCurrentStep={setCurrentStep}
               billingType={billingType}
@@ -75,10 +74,9 @@ const PersonalInfo = () => {
         </div>
       </div>
 
-      {/* Div para mobile, que não tem a borda e outras classes */}
-      <div className="sm:hidden ">
+      <div className="sm:hidden">
         <Sidebar currentStep={currentStep} />
-        <div className="flex flex-col justify-between min-h-[100%] w-[90%] mx-[5%] ">
+        <div className="flex flex-col justify-between min-h-[100%] w-[90%] mx-[5%]">
           {currentStep === 1 && (
             <PersonalInfoForm
               formData={formData}
@@ -92,13 +90,13 @@ const PersonalInfo = () => {
               currentStep={currentStep}
               setCurrentStep={setCurrentStep}
               setBillingType={setBillingType}
-              handlePlanSelect={handlePlanSelect} // Adiciona a função de seleção de plano
+              handlePlanSelect={handlePlanSelect}
             />
           )}
           {currentStep === 3 && (
             <AddOnsForm
-              selectedAddOns={selectedAddOns}       // Passa o estado selectedAddOns
-              setSelectedAddOns={setSelectedAddOns} // Passa a função setSelectedAddOns
+              selectedAddOns={selectedAddOns}
+              setSelectedAddOns={setSelectedAddOns}
               currentStep={currentStep}
               setCurrentStep={setCurrentStep}
               billingType={billingType}
