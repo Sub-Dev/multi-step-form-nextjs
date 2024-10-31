@@ -1,3 +1,4 @@
+"use client";
 import React, { useEffect, useState } from 'react';
 
 const ThankYou = () => {
@@ -5,14 +6,14 @@ const ThankYou = () => {
 
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth < 768); // Define a largura máxima para mobile
+      setIsMobile(window.innerWidth < 768);
     };
 
-    handleResize(); // Verifica a largura inicial
-    window.addEventListener('resize', handleResize); // Adiciona o listener de resize
+    handleResize();
+    window.addEventListener('resize', handleResize);
 
     return () => {
-      window.removeEventListener('resize', handleResize); // Remove o listener quando o componente é desmontado
+      window.removeEventListener('resize', handleResize);
     };
   }, []);
 

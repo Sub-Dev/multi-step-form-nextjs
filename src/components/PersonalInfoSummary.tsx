@@ -1,3 +1,4 @@
+"use client";
 import React, { useState, useEffect } from 'react';
 import NextButton from './NextButton';
 import GoBackButton from './GoBackButton';
@@ -21,7 +22,6 @@ const Summary: React.FC<SummaryProps> = ({ selectedPlan, selectedAddOns, billing
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Função para calcular o preço total
   const calculateTotal = () => {
     const planPrice = billingType === 'yearly' ? selectedPlan.price * 10 : selectedPlan.price;
     const addOnsPrice = selectedAddOns.reduce(
@@ -31,7 +31,6 @@ const Summary: React.FC<SummaryProps> = ({ selectedPlan, selectedAddOns, billing
     return planPrice + addOnsPrice;
   };
 
-  // Função para o próximo passo
   const handleNext = () => setCurrentStep(5);
 
   return (
@@ -77,7 +76,7 @@ const Summary: React.FC<SummaryProps> = ({ selectedPlan, selectedAddOns, billing
           +${calculateTotal()}/{billingType === 'monthly' ? 'mo' : 'yr'}
         </span>
       </div>
-      {/* Botões para desktop e mobile */}
+
       {!isMobile ? (
         <div className="flex justify-between mt-2">
           <GoBackButton onClick={() => setCurrentStep(3)} />
