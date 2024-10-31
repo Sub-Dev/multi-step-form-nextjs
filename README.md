@@ -38,9 +38,14 @@ Os usuários devem ser capazes de:
 ![first-step](./public/firststep.png)
 ![second-step](./public/secondstep.png)
 ![third-step](./public/thirdstep.png)
-![first-step-mobile](./public/firststep-mobile.png)
-![second-step-mobile](./public/secondstep-mobile.png)
-![fourth-step-mobile](./public/fourthstep-mobile.png)
+
+<table>
+  <tr>
+    <td><img alt="first-step-mobile" src="./public/firststep-mobile.png" width="100%"></td>
+    <td><img alt="second-step-mobile" src="./public/secondstep-mobile.png" width="100%"></td>
+    <td><img alt="fourth-step-mobile" src="./public/fourthstep-mobile.png" width="100%"></td>
+  </tr>
+</table>
 
 ### Links
 
